@@ -125,7 +125,7 @@ def revisar_mensaje(msg: str, pats, pol: dict, cambios: int = 0):
     sin_coautoria = "\n".join(l for l in lineas if not re.match(r"\s*co-authored-by\s*:", l, re.I))
     hallado = coincide(sin_coautoria, pats)
     if hallado:
-        errores.append(f"El mensaje menciona una herramienta o autoría automática («{hallado.strip()}»). Describe qué se hizo, no quién o con qué.")
+        errores.append(f"El mensaje menciona una herramienta o autoría automática ('{hallado.strip()}'). Describe qué se hizo, no quién o con qué.")
 
     maximo = int(pol.get("max_titulo", 72))
     if len(titulo) > max(maximo, 100):
@@ -133,7 +133,7 @@ def revisar_mensaje(msg: str, pats, pol: dict, cambios: int = 0):
     elif len(titulo) > maximo:
         avisos.append(f"El título mide {len(titulo)} caracteres; conviene que no pase de {maximo}.")
     if titulo.lower().rstrip(".") in GENERICOS or len(titulo.split()) < 2:
-        avisos.append(f"El título «{titulo}» es genérico. Debe decir qué se hizo en esta actividad.")
+        avisos.append(f"El título '{titulo}' es genérico. Debe decir qué se hizo en esta actividad.")
     if titulo.endswith("."):
         avisos.append("El título no necesita punto final.")
     if len(lineas) > 1 and lineas[1].strip():
@@ -158,15 +158,15 @@ def revisar_identidad(repo: str, pats, pol: dict):
     if not (nombre_l and correo_l):
         avisos.append("La identidad viene de la configuración global, no de este repositorio. Si el proyecto exige una identidad propia, fíjala con git config (sin --global).")
     if len(nombre.split()) < 2:
-        avisos.append(f"El nombre del autor («{nombre}») parece corto. Usa nombre y apellido.")
+        avisos.append(f"El nombre del autor ('{nombre}') parece corto. Usa nombre y apellido.")
     h = coincide(nombre + " " + correo, pats)
     if h:
-        errores.append(f"La identidad del autor parece una herramienta o un bot («{h.strip()}»). Debe ser una persona.")
+        errores.append(f"La identidad del autor parece una herramienta o un bot ('{h.strip()}'). Debe ser una persona.")
     esperado_n, esperado_c = pol.get("autor_nombre"), pol.get("autor_email")
     if esperado_n and nombre != esperado_n:
-        errores.append(f"El autor es «{nombre}» y la política del proyecto exige «{esperado_n}».")
+        errores.append(f"El autor es '{nombre}' y la política del proyecto exige '{esperado_n}'.")
     if esperado_c and correo != esperado_c:
-        errores.append(f"El correo del autor es «{correo}» y la política del proyecto exige «{esperado_c}».")
+        errores.append(f"El correo del autor es '{correo}' y la política del proyecto exige '{esperado_c}'.")
     return errores, avisos
 
 
@@ -205,7 +205,7 @@ def revisar_preparado(repo: str, pats, pol: dict):
         h = coincide(linea, pats)
         if h and (archivo, "t") not in vistos:
             vistos.add((archivo, "t"))
-            avisos.append(f"{archivo}: el texto añadido menciona «{h.strip()}». Revisa que no delate una autoría automática.")
+            avisos.append(f"{archivo}: el texto añadido menciona '{h.strip()}'. Revisa que no delate una autoría automática.")
         if re.search(r"\b(TODO|FIXME|XXX)\b", linea) and (archivo, "todo") not in vistos:
             vistos.add((archivo, "todo"))
             avisos.append(f"{archivo}: queda un TODO/FIXME.")
@@ -228,9 +228,9 @@ def revisar_commit_publicado(repo: str, sha: str, pats, pol: dict):
     avisos += [f"{corto}: {x}" for x in a]
     h = coincide(autor + " " + correo, pats)
     if h:
-        errores.append(f"{corto}: el autor parece una herramienta o un bot («{h.strip()}»).")
+        errores.append(f"{corto}: el autor parece una herramienta o un bot ('{h.strip()}').")
     if pol.get("autor_email") and correo != pol["autor_email"]:
-        errores.append(f"{corto}: el correo del autor es «{correo}» y la política exige «{pol['autor_email']}».")
+        errores.append(f"{corto}: el correo del autor es '{correo}' y la política exige '{pol['autor_email']}'.")
     return errores, avisos
 
 
@@ -297,11 +297,11 @@ def modo_push(a) -> int:
             continue  # borrado de rama
         rama = ref_remota.replace("refs/heads/", "")
         if rama in pol.get("ramas_protegidas", []):
-            errores.append(f"«{rama}» es una rama protegida: no se publica directamente en ella.")
+            errores.append(f"'{rama}' es una rama protegida: no se publica directamente en ella.")
         if sha_remoto != CEROS:
             if subprocess.run(["git", "-C", repo, "merge-base", "--is-ancestor", sha_remoto, sha_local]).returncode != 0 \
                     and os.environ.get("COMMIT_LIMPIO_PERMITIR_FORCE") != "1":
-                errores.append(f"Esto reescribe el historial de «{rama}» (no es un avance simple). Solo con orden expresa del usuario.")
+                errores.append(f"Esto reescribe el historial de '{rama}' (no es un avance simple). Solo con orden expresa del usuario.")
             nuevos = commits_en(repo, f"{sha_remoto}..{sha_local}")
         else:  # rama nueva: solo lo que el remoto aún no tiene
             nuevos = [c for c in git(repo, "rev-list", "--reverse", sha_local, "--not", f"--remotes={remoto}").split() if c]
@@ -313,7 +313,7 @@ def modo_push(a) -> int:
     if cmd and not errores:
         r = subprocess.run(cmd, shell=True, cwd=repo, capture_output=True, text=True)
         if r.returncode != 0:
-            errores.append(f"Las pruebas del proyecto fallaron («{cmd}»). Arréglalas antes de publicar.")
+            errores.append(f"Las pruebas del proyecto fallaron ('{cmd}'). Arréglalas antes de publicar.")
     return informe("Push: lo que se va a publicar", errores, avisos, a.json)
 
 
