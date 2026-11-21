@@ -23,7 +23,7 @@ Tres piezas que trabajan juntas:
 Cuando trabajas con una herramienta de desarrollo que escribe código, los commits se llenan de ruido que delata el origen o que simplemente están mal hechos:
 
 - mensajes que dicen que lo hizo **una herramienta**, o con líneas de coautoría que nadie pidió;
-- títulos como **«update»** o **«cambios»** que no dicen nada;
+- títulos como **"update"** o **"cambios"** que no dicen nada;
 - autores que son un bot en vez de una persona;
 - **claves, archivos `.env` o llaves** que se cuelan en el historial;
 - pushes que **reescriben el historial** o van directo a la rama principal.
@@ -36,7 +36,7 @@ Corregirlo después es caro: reescribir historial y empujar muchas ramas a la fu
 - **Bloquear** menciones de herramientas, coautorías automáticas, secretos y archivos que no deben subirse.
 - **Revisar un repositorio entero antes de hacerlo público**: cada commit, cada autor.
 - Exigir el **formato de la empresa** (por ejemplo `TASK #123: …`), el **autor** y las **ramas protegidas**.
-- Que tu herramienta te diga, tras publicar: *«Lo hice y está bien, pero te recomendaría revisar esto. ¿Publico así o prefieres mejorarlo?»*
+- Que tu herramienta te diga, tras publicar: *"Lo hice y está bien, pero te recomendaría revisar esto. ¿Publico así o prefieres mejorarlo?"*
 
 ## Cuándo usarla
 
@@ -78,9 +78,9 @@ El gancho lo **rechaza** y no crea el commit:
 ```
 ESTO HAY QUE ARREGLAR ANTES DE PUBLICAR:
   ✗ Lleva una línea de coautoría (Co-Authored-By). Los commits llevan solo el autor humano.
-  ✗ El mensaje menciona una herramienta o autoría automática («herramienta-x»). Describe qué se hizo, no quién o con qué.
+  ✗ El mensaje menciona una herramienta o autoría automática ("herramienta-x"). Describe qué se hizo, no quién o con qué.
 RECOMENDACIONES (no bloquean):
-  • El título «update» es genérico. Debe decir qué se hizo en esta actividad.
+  • El título "update" es genérico. Debe decir qué se hizo en esta actividad.
 ```
 
 Uno que pasa **con recomendaciones**:

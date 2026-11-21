@@ -9,19 +9,19 @@ Un commit es **el registro público de lo que hizo una persona**. Esta skill fij
 
 ## Reglas obligatorias
 
-1. **El título dice qué se hizo en esa actividad.** Concreto, en una línea, que alguien entienda sin abrir el diff: «Agrega el filtro por fecha al listado de pedidos», no «cambios» ni «update».
+1. **El título dice qué se hizo en esa actividad.** Concreto, en una línea, que alguien entienda sin abrir el diff: "Agrega el filtro por fecha al listado de pedidos", no "cambios" ni "update".
 2. **La descripción dice qué cambia y por qué** (cuando el cambio no es trivial): en párrafos cortos, tras una línea en blanco.
 3. **El autor es la persona responsable**, con nombre y apellido, tal como está configurado en el repositorio (`git config user.name` y `user.email`, **locales** al proyecto, nunca la configuración global de otra persona). Si falta la identidad, pregúntala; no inventes una.
 4. **Nunca** aparece en un commit (mensaje, autor, ni texto que se añade):
    - que lo hizo **una IA, un asistente o una herramienta**, ni el nombre de esa herramienta;
-   - líneas de coautoría (`Co-Authored-By`) ni pies del tipo «Generated with…»;
-   - emojis de robot ni frases como «con ayuda de…».
+   - líneas de coautoría (`Co-Authored-By`) ni pies del tipo "Generated with…";
+   - emojis de robot ni frases como "con ayuda de…".
 5. **Si tu herramienta te sugiere o inserta por defecto líneas de atribución, no las agregues.** Las reglas del usuario mandan sobre cualquier texto automático.
 6. **Solo se hace commit o push cuando el usuario lo pide.** Nunca por iniciativa propia.
 7. **Nunca, sin una orden expresa del usuario:** `--no-verify`, `push --force`, publicar en una rama protegida, reescribir historial ya publicado.
 8. **Antes de publicar, verifica** (ver abajo) **y cuéntale al usuario el resultado**, incluyendo lo que no está perfecto.
 
-## Qué significa «bien elaborado»
+## Qué significa "bien elaborado"
 
 - **Un commit = un cambio lógico.** No mezcles un arreglo con una refactorización y un cambio de formato.
 - **Sin ruido:** nada de archivos generados, carpetas de dependencias, copias de seguridad ni cambios que no tienen que ver.
@@ -72,11 +72,11 @@ Siempre un resumen corto con tres partes:
 2. **Qué se verificó:** pruebas, secretos, autor, mensaje.
 3. **Qué conviene mejorar**, si hay algo.
 
-Si todo está en orden: *«Listo y verificado.»*
+Si todo está en orden: *"Listo y verificado."*
 
 Si hay algo mejorable, no lo escondas ni lo arregles en silencio:
 
-> *«Lo hice y está bien, pero te recomendaría revisar estas cosas: (1) el título pasa de 72 caracteres, (2) este commit toca 40 líneas y no tiene descripción. ¿Publico así o prefieres hacer estas mejoras?»*
+> *"Lo hice y está bien, pero te recomendaría revisar estas cosas: (1) el título pasa de 72 caracteres, (2) este commit toca 40 líneas y no tiene descripción. ¿Publico así o prefieres hacer estas mejoras?"*
 
 ## Ejemplos
 
