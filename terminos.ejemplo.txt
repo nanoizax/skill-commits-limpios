@@ -1,0 +1,12 @@
+# Términos propios que NUNCA deben aparecer en un commit (mensaje, autor o texto añadido).
+# Copia este archivo a una de estas rutas y edítalo:
+#   <tu-repositorio>/.commit-limpio/terminos.txt        (solo ese proyecto)
+#   ~/.config/commit-limpio/terminos.txt                (todos tus proyectos)
+# o apunta a otro con la variable de entorno COMMIT_LIMPIO_TERMINOS.
+#
+# Una línea por término. Sin importar mayúsculas. Las líneas que empiezan con # se ignoran.
+# Texto literal:
+nombre-de-tu-herramienta
+otro-nombre-que-no-debe-aparecer
+# Expresión regular (empieza con re:):
+re:\bmi-asistente(-\w+)?\b

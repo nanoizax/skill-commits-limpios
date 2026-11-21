@@ -1,0 +1,5 @@
+#!/bin/sh
+# Gancho pre-push: revisa lo que se va a publicar (autores, mensajes, rama protegida, reescritura de historial, pruebas).
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+PY="$(command -v python3 || command -v python)"
+exec "$PY" "$DIR/scripts/verificar_publicacion.py" push "$@"

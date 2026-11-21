@@ -1,0 +1,8 @@
+{
+  "autor_nombre": "Nombre Apellido",
+  "autor_email": "tu-correo@ejemplo.com",
+  "prefijo": "^TASK #\\d+: ",
+  "max_titulo": 72,
+  "ramas_protegidas": ["main", "master", "QA"],
+  "comando_pruebas": "npm test"
+}

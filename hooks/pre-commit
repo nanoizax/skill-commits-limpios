@@ -1,0 +1,5 @@
+#!/bin/sh
+# Gancho pre-commit: revisa la identidad del autor y lo que está preparado (secretos, archivos que no deben subirse).
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+PY="$(command -v python3 || command -v python)"
+exec "$PY" "$DIR/scripts/verificar_publicacion.py" commit
